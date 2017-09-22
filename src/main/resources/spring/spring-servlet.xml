@@ -10,14 +10,14 @@
           http://www.springframework.org/schema/context
           http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-    <context:component-scan base-package="org.hqf.tutorials.spring.restapi.controller"/>
+    <context:component-scan base-package="org.hqf.tutorials.spring"/>
 
     <mvc:annotation-driven/>
 
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/view/"/>
-        <property name="suffix" value=".html"/>
-    </bean>
+    <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+        <!--<property name="prefix" value="/WEB-INF/view/"/>-->
+        <!--<property name="suffix" value=".html"/>-->
+    <!--</bean>-->
 
 
 </beans>

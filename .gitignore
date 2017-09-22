@@ -100,3 +100,4 @@ hs_err_pid*
 .idea/modules/
 
 /.idea/vcs.xml
+/*.iml

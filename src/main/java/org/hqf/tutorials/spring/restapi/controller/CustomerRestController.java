@@ -19,7 +19,7 @@ public class CustomerRestController {
     private CustomerDAO customerDAO;
 
 
-    @RequestMapping(value = "")
+    @RequestMapping(value = "",method = RequestMethod.GET)
     public List getCustomers() {
         return customerDAO.list();
     }
@@ -44,7 +44,7 @@ public class CustomerRestController {
     }
 
     @RequestMapping(value = "{id}",method = RequestMethod.DELETE)
-    public ResponseEntity<Object> deleteCustomer(@PathVariable Long id) {
+    public ResponseEntity<java.io.Serializable> deleteCustomer(@PathVariable Long id) {
 
         if (null == customerDAO.delete(id)) {
             return new ResponseEntity<>("No Customer found for ID " + id, HttpStatus.NOT_FOUND);
