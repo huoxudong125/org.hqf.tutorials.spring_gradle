@@ -4,6 +4,8 @@ version '1.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'idea'
+//http://akhikhl.github.io/gretty-doc/Getting-started.html
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
 
 sourceCompatibility = 1.8
 
@@ -23,12 +25,10 @@ dependencies {
 
     //2. https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j
     compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.25'
-
     //3. Logback
     compile 'ch.qos.logback:logback-classic:1.2.3'
 
-
-    //compile 'com.fasterxml.jackson.core:jackson-databind:2.9.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.0'
 
     //include in compile only, exclude in the war
     providedCompile 'javax.servlet:servlet-api:2.5'
@@ -39,4 +39,15 @@ dependencies {
 
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+//config for gretty
+gretty {
+    httpPort = 8081
+    contextPath = '/'
+    servletContainer='jetty9'
+    scanInterval=5 //间隔多长时间
+
+
+    // ... many more properties
 }
