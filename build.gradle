@@ -3,6 +3,7 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'war'
+apply plugin: 'idea'
 
 sourceCompatibility = 1.8
 
@@ -10,7 +11,28 @@ repositories {
     mavenCentral()
 }
 
+//1. exclude commons-logging
+configurations.all {
+    exclude group: "commons-logging", module: "commons-logging"
+}
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    // https://mvnrepository.com/artifact/org.springframework/spring-webmvc
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.0.0.RELEASE'
+
+    //2. https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j
+    compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.25'
+
+    //3. Logback
+    compile 'ch.qos.logback:logback-classic:1.1.3'
+
+    //include in compile only, exclude in the war
+    providedCompile 'javax.servlet:servlet-api:2.5'
+
+    // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
+    testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+
+
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
