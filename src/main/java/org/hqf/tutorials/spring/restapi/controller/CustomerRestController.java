@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@RequestMapping("/customers")
 public class CustomerRestController {
 
 
@@ -18,51 +19,51 @@ public class CustomerRestController {
     private CustomerDAO customerDAO;
 
 
-    @RequestMapping(value = "/customers",method = RequestMethod.POST)
+    @RequestMapping(value = "")
     public List getCustomers() {
         return customerDAO.list();
     }
 
-    @RequestMapping(value="/customers/{id}",method=RequestMethod.GET)
-    public ResponseEntity getCustomer(@PathVariable("id") Long id) {
+    @RequestMapping(value="{id}",method=RequestMethod.GET)
+    public ResponseEntity<Object> getCustomer(@PathVariable("id") Long id) {
 
         Customer customer = customerDAO.get(id);
         if (customer == null) {
-            return new ResponseEntity("No Customer found for ID " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No Customer found for ID " + id, HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity(customer, HttpStatus.OK);
+        return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/customers",method = RequestMethod.POST)
-    public ResponseEntity createCustomer(@RequestBody Customer customer) {
+    @RequestMapping(value = "",method = RequestMethod.POST)
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
 
         customerDAO.create(customer);
 
-        return new ResponseEntity(customer, HttpStatus.OK);
+        return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/customers/{id}",method = RequestMethod.DELETE)
-    public ResponseEntity deleteCustomer(@PathVariable Long id) {
+    @RequestMapping(value = "{id}",method = RequestMethod.DELETE)
+    public ResponseEntity<Object> deleteCustomer(@PathVariable Long id) {
 
         if (null == customerDAO.delete(id)) {
-            return new ResponseEntity("No Customer found for ID " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No Customer found for ID " + id, HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity(id, HttpStatus.OK);
+        return new ResponseEntity<>(id, HttpStatus.OK);
 
     }
 
-    @RequestMapping(value = "/customers/{id}",method = RequestMethod.PUT)
-    public ResponseEntity updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
+    @RequestMapping(value = "{id}",method = RequestMethod.PUT)
+    public ResponseEntity<Object> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
 
         customer = customerDAO.update(id, customer);
 
         if (null == customer) {
-            return new ResponseEntity("No Customer found for ID " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No Customer found for ID " + id, HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity(customer, HttpStatus.OK);
+        return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
 }

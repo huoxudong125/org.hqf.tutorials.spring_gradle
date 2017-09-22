@@ -3,6 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/spring-core-config.xml</param-value>
+    </context-param>
+
+
     <servlet>
         <servlet-name>spring-rest</servlet-name>
         <servlet-class>
@@ -16,7 +22,7 @@
 
     <servlet-mapping>
         <servlet-name>spring-rest</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
 
@@ -28,10 +34,6 @@
         </listener-class>
     </listener>
 
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring/spring-core-config.xml</param-value>
-    </context-param>
 
 
 
@@ -58,6 +60,11 @@
         <param-name>logbackConfigLocation</param-name>
         <param-value>classpath:logback.xml</param-value>
     </context-param>
+
+    <!-- 欢迎界面 -->
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
 
 
 </web-app>
