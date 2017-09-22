@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hqf.tutorials.spring.restapi.po.Customer;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 
-@Component
+@Service
 public class CustomerDAO {
 
     // Dummy database. Initialize with some dummy values.
@@ -24,7 +24,7 @@ public class CustomerDAO {
      *
      * @return list of customers
      */
-    public List list() {
+    public List<Customer> list() {
         return customers;
     }
 
